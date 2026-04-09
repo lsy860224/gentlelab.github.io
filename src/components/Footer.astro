@@ -1,0 +1,29 @@
+---
+import { t, localePath } from '../utils/i18n';
+
+const strings = t(Astro.url);
+---
+
+<footer class="bg-deep-ocean text-driftwood/70 mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <!-- Brand -->
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="GentleLab" class="w-6 h-6" />
+        <span class="font-semibold text-driftwood">{strings.main.heroTitle}</span>
+      </div>
+
+      <!-- Links -->
+      <div class="flex items-center gap-6 text-sm">
+        <a href={localePath('/gentledo', Astro.url)} class="hover:text-compass-gold transition-colors">GentleDo</a>
+        <a href={localePath('/gentlefast', Astro.url)} class="hover:text-sage-mist transition-colors">GentleFast</a>
+        <a href={localePath('/gentlestudy', Astro.url)} class="hover:text-warm-amber transition-colors">GentleStudy</a>
+        <a href={localePath('/privacy/gentledo', Astro.url)} class="hover:text-driftwood transition-colors">{strings.common.privacy}</a>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-driftwood/10 text-center text-xs text-driftwood/40">
+      &copy; {strings.common.copyright}
+    </div>
+  </div>
+</footer>

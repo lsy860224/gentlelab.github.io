@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLocale } from '../../utils/i18n';
+
+const locale = getLocale(Astro.url);
+---
+
+<BaseLayout
+  title="GentleDo — Privacy Policy"
+  description={locale === 'ko' ? 'GentleDo 앱의 개인정보처리방침입니다.' : 'Privacy policy for the GentleDo app.'}
+  path="/privacy/gentledo"
+>
+  <article class="max-w-2xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+    <!-- Title -->
+    <h1 class="text-2xl sm:text-3xl font-bold mb-2">GentleDo 개인정보처리방침</h1>
+    <p class="text-sm text-deep-ocean/40 dark:text-driftwood/40 mb-10">최종 수정일: 2026년 3월 29일</p>
+
+    <div class="space-y-8 text-[15px] leading-relaxed text-deep-ocean/80 dark:text-driftwood/80">
+      <!-- 1 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">1. 개요</h2>
+        <p>GentleDo(이하 "앱")는 babipa가 개발한 생산성 앱입니다. 본 개인정보처리방침은 앱 사용 시 개인정보가 어떻게 처리되는지 설명합니다.</p>
+      </section>
+
+      <!-- 2 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">2. 수집하는 개인정보</h2>
+        <p class="font-semibold text-deep-ocean dark:text-driftwood mb-2">GentleDo는 개인정보를 수집하지 않습니다.</p>
+        <p class="mb-3">앱에서 생성되는 모든 데이터(할 일, 일일 기록, 설정 등)는 사용자의 기기에만 저장되며, 외부 서버로 전송되지 않습니다.</p>
+        <p class="font-medium text-deep-ocean dark:text-driftwood text-sm mb-2">기기에 로컬로 저장되는 데이터:</p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li>할 일 목록 및 관련 정보 (제목, 메모, 우선순위, 카테고리, 예상 시간 등)</li>
+          <li>일일 에너지 체크인 기록</li>
+          <li>모멘텀 점수</li>
+          <li>미루기 이력</li>
+          <li>앱 설정 (언어, 테마, 알림 설정 등)</li>
+        </ul>
+      </section>
+
+      <!-- 3 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">3. 데이터 저장</h2>
+        <p>모든 데이터는 SQLite 데이터베이스를 통해 사용자의 기기 내에만 저장됩니다. 클라우드 서버, 외부 데이터베이스, 또는 제3자 서비스로 데이터가 전송되지 않습니다.</p>
+      </section>
+
+      <!-- 4 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">4. 제3자 공유</h2>
+        <p>GentleDo는 어떠한 데이터도 제3자와 공유하지 않습니다.</p>
+      </section>
+
+      <!-- 5 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">5. 알림</h2>
+        <p>앱은 로컬 알림 기능을 사용합니다. 알림은 기기 내에서 처리되며, 푸시 알림 서버를 사용하지 않습니다. 알림 권한은 앱 설정에서 언제든지 변경할 수 있습니다.</p>
+      </section>
+
+      <!-- 6 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">6. 분석 및 추적</h2>
+        <p>GentleDo는 사용자 분석, 추적, 광고를 포함하지 않습니다.</p>
+      </section>
+
+      <!-- 7 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">7. 아동 개인정보</h2>
+        <p>GentleDo는 13세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
+      </section>
+
+      <!-- 8 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">8. 데이터 삭제</h2>
+        <p>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다. 앱 내 설정에서 데이터 내보내기 기능을 통해 데이터를 백업할 수 있습니다.</p>
+      </section>
+
+      <!-- 9 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">9. 변경 사항</h2>
+        <p>본 개인정보처리방침은 변경될 수 있으며, 변경 시 앱 업데이트를 통해 안내합니다.</p>
+      </section>
+
+      <!-- 10 -->
+      <section>
+        <h2 class="text-lg font-semibold text-deep-ocean dark:text-driftwood mb-2">10. 문의</h2>
+        <p>개인정보처리방침에 관한 문의 사항이 있으시면 아래로 연락해 주세요.</p>
+        <p class="mt-2 font-medium text-deep-ocean dark:text-driftwood">babipanote@gmail.com</p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

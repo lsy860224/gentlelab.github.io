@@ -1,0 +1,97 @@
+/* Font imports moved to BaseLayout.astro <head> to avoid CSS @import order warnings */
+@import "tailwindcss";
+
+/* ── Dark mode variant ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Brand Design Tokens ── */
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Shared brand colors */
+  --color-deep-ocean: #1B2838;
+  --color-driftwood: #F5F0EB;
+  --color-salt-white: #FAFAF8;
+  --color-abyss: #0F1923;
+  --color-tide-green: #4CAF82;
+  --color-dusk-amber: #E8A54B;
+  --color-dark-surface: #1E2D3D;
+
+  /* GentleDo */
+  --color-compass-gold: #C8956C;
+  --color-seafoam: #7FBBB3;
+
+  /* GentleFast */
+  --color-sage-mist: #8BB5A2;
+  --color-morning-dew: #B8D4C8;
+
+  /* GentleStudy */
+  --color-warm-amber: #D4915C;
+  --color-study-glow: #E8C88A;
+}
+
+/* ── Scroll-reveal animation ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ── Arc draw animation ── */
+@keyframes arc-draw {
+  from {
+    stroke-dashoffset: 600;
+  }
+  to {
+    stroke-dashoffset: 135;
+  }
+}
+
+.animate-arc-draw {
+  animation: arc-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Phone float animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-arc-draw,
+  .animate-float {
+    animation: none !important;
+  }
+}
+
+/* ── Base styles ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-deep-ocean);
+  background-color: var(--color-salt-white);
+}
+
+.dark body {
+  color: var(--color-driftwood);
+  background-color: var(--color-abyss);
+}

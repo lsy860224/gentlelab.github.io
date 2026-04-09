@@ -1,0 +1,28 @@
+---
+import { t } from '../utils/i18n';
+const strings = t(Astro.url);
+
+const values = [
+  { icon: '🎨', title: strings.main.valueNoRed, desc: strings.main.valueNoRedDesc },
+  { icon: '🌊', title: strings.main.valueMomentum, desc: strings.main.valueMomentumDesc },
+  { icon: '⚡', title: strings.main.valueEnergy, desc: strings.main.valueEnergyDesc },
+  { icon: '🌱', title: strings.main.valueFreshStart, desc: strings.main.valueFreshStartDesc },
+];
+---
+
+<section class="py-16 px-4 sm:px-6" data-reveal>
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-center text-sm font-semibold text-deep-ocean/40 dark:text-driftwood/40 uppercase tracking-widest mb-8">
+      {strings.main.valuesTitle}
+    </h2>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {values.map((v) => (
+        <div class="text-center p-4 rounded-2xl bg-driftwood/50 dark:bg-dark-surface/50">
+          <div class="text-2xl mb-2">{v.icon}</div>
+          <h3 class="font-semibold text-sm">{v.title}</h3>
+          <p class="text-xs text-deep-ocean/50 dark:text-driftwood/50 mt-1">{v.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

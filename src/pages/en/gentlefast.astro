@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ComingSoonBadge from '../../components/ComingSoonBadge.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import { t } from '../../utils/i18n';
+
+const strings = t(Astro.url);
+const s = strings.gentlefast;
+---
+
+<BaseLayout
+  title={`GentleFast — ${s.heroTagline}`}
+  description={s.heroDescription}
+  ogImage="/og/og-gentlefast.png"
+  path="/en/gentlefast"
+>
+  <section class="py-20 sm:py-32 px-4 sm:px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-3 justify-center mb-4">
+        <img src="/images/gentlefast-icon.png" alt="GentleFast" class="w-16 h-16 rounded-2xl shadow-md" />
+        <h1 class="text-3xl sm:text-4xl font-extrabold">GentleFast</h1>
+        <ComingSoonBadge />
+      </div>
+      <p class="text-xl sm:text-2xl font-medium text-sage-mist">{s.heroTagline}</p>
+      <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 max-w-md mx-auto">{s.heroDescription}</p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 sm:px-6 bg-driftwood/30 dark:bg-dark-surface/30" data-reveal>
+    <div class="max-w-3xl mx-auto">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <FeatureCard icon="⚡" title={s.feature1Title} description={s.feature1Desc} />
+        <FeatureCard icon="⏱️" title={s.feature2Title} description={s.feature2Desc} />
+        <FeatureCard icon="🌱" title={s.feature3Title} description={s.feature3Desc} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 px-4 sm:px-6 text-center" data-reveal>
+    <p class="text-sm text-deep-ocean/50 dark:text-driftwood/50 max-w-md mx-auto">{s.sharedDna}</p>
+  </section>
+
+  <section class="py-16 px-4 sm:px-6 bg-deep-ocean text-center" data-reveal>
+    <div class="max-w-md mx-auto">
+      <h2 class="text-xl font-bold text-salt-white">{s.notify}</h2>
+      <a href="mailto:babipanote@gmail.com?subject=GentleFast%20Notify%20Me" class="inline-block mt-6 px-6 py-3 bg-sage-mist text-deep-ocean font-semibold rounded-xl hover:scale-[1.02] transition-transform duration-200">
+        {strings.common.notifyMe}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

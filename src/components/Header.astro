@@ -1,0 +1,99 @@
+---
+import { t, localePath, altLocalePath, getLocale } from '../utils/i18n';
+
+const strings = t(Astro.url);
+const locale = getLocale(Astro.url);
+const currentPath = Astro.url.pathname.replace(/^\/en/, '') || '/';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-salt-white/80 dark:bg-abyss/80 backdrop-blur-md border-b border-deep-ocean/5 dark:border-driftwood/5">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href={localePath('/', Astro.url)} class="flex items-center gap-2 font-bold text-lg tracking-tight">
+      <img src="/favicon.svg" alt="GentleLab" class="w-7 h-7" />
+      <span>GentleLab</span>
+    </a>
+
+    <!-- Nav links (desktop) -->
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href={localePath('/gentledo', Astro.url)}
+         class:list={["hover:text-compass-gold transition-colors", { 'text-compass-gold': currentPath.startsWith('/gentledo') }]}>
+        {strings.nav.gentledo}
+      </a>
+      <a href={localePath('/gentlefast', Astro.url)}
+         class:list={["hover:text-sage-mist transition-colors", { 'text-sage-mist': currentPath.startsWith('/gentlefast') }]}>
+        {strings.nav.gentlefast}
+      </a>
+      <a href={localePath('/gentlestudy', Astro.url)}
+         class:list={["hover:text-warm-amber transition-colors", { 'text-warm-amber': currentPath.startsWith('/gentlestudy') }]}>
+        {strings.nav.gentlestudy}
+      </a>
+    </div>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-3">
+      <!-- Language toggle -->
+      <a href={altLocalePath(currentPath, Astro.url)}
+         class="text-xs font-semibold px-2.5 py-1 rounded-full border border-deep-ocean/10 dark:border-driftwood/10 hover:bg-driftwood dark:hover:bg-dark-surface transition-colors">
+        {strings.nav.language}
+      </a>
+
+      <!-- Dark mode toggle -->
+      <button
+        id="dark-toggle"
+        aria-label="Toggle dark mode"
+        class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-driftwood dark:hover:bg-dark-surface transition-colors"
+      >
+        <!-- Sun (shown in dark mode) -->
+        <svg class="w-4 h-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <!-- Moon (shown in light mode) -->
+        <svg class="w-4 h-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Mobile menu toggle -->
+      <button
+        id="mobile-menu-toggle"
+        aria-label="Toggle menu"
+        class="md:hidden w-8 h-8 flex items-center justify-center rounded-full hover:bg-driftwood dark:hover:bg-dark-surface transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-deep-ocean/5 dark:border-driftwood/5 bg-salt-white dark:bg-abyss">
+    <div class="px-4 py-3 space-y-2">
+      <a href={localePath('/gentledo', Astro.url)} class="block py-2 text-sm font-medium hover:text-compass-gold transition-colors">
+        {strings.nav.gentledo}
+      </a>
+      <a href={localePath('/gentlefast', Astro.url)} class="block py-2 text-sm font-medium hover:text-sage-mist transition-colors">
+        {strings.nav.gentlefast}
+      </a>
+      <a href={localePath('/gentlestudy', Astro.url)} class="block py-2 text-sm font-medium hover:text-warm-amber transition-colors">
+        {strings.nav.gentlestudy}
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="h-16"></div>
+
+<script is:inline>
+  // Dark mode toggle
+  document.getElementById('dark-toggle')?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // Mobile menu toggle
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+</script>

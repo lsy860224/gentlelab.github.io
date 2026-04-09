@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gentlelab.vercel.app/sitemap-index.xml

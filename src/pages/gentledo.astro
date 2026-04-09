@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhoneMockup from '../components/PhoneMockup.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import { t } from '../utils/i18n';
+
+const strings = t(Astro.url);
+const s = strings.gentledo;
+---
+
+<BaseLayout
+  title={`GentleDo — ${s.heroTagline}`}
+  description={s.heroDescription}
+  ogImage="/og/og-gentledo.png"
+  path="/gentledo"
+>
+  <!-- Hero -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <!-- Text -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="flex items-center gap-3 justify-center lg:justify-start mb-4">
+          <img src="/images/gentledo-icon.png" alt="GentleDo" class="w-16 h-16 rounded-2xl shadow-md" />
+          <h1 class="text-3xl sm:text-4xl font-extrabold">GentleDo</h1>
+          <span class="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-seafoam/15 text-seafoam">
+            {s.betaBadge}
+          </span>
+        </div>
+        <p class="text-xl sm:text-2xl font-medium text-compass-gold">{s.heroTagline}</p>
+        <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 max-w-md mx-auto lg:mx-0">
+          {s.betaDescription}
+        </p>
+        <a
+          href="mailto:babipanote@gmail.com?subject=GentleDo%20TestFlight%20%EC%B0%B8%EC%97%AC%20%EC%8B%A0%EC%B2%AD"
+          class="inline-block mt-6 px-7 py-3 bg-compass-gold text-deep-ocean font-semibold rounded-xl hover:scale-[1.02] transition-transform duration-200 shadow-md"
+        >
+          {s.joinBeta}
+        </a>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="flex-shrink-0">
+        <PhoneMockup imageSrc="/images/screenshots/gentledo/01_today.png" alt="GentleDo Today view" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Energy Check-in -->
+  <section class="py-16 px-4 sm:px-6 bg-driftwood/30 dark:bg-dark-surface/30" data-reveal>
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold">{s.energyTitle}</h2>
+      <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 max-w-lg mx-auto">
+        {s.energyDescription}
+      </p>
+      <div class="grid grid-cols-3 gap-4 mt-10 max-w-lg mx-auto">
+        <div class="bg-salt-white dark:bg-abyss rounded-2xl p-5 text-center shadow-sm">
+          <div class="text-3xl mb-2">🌙</div>
+          <div class="font-semibold text-sage-mist">{s.energyLow}</div>
+          <p class="text-xs text-deep-ocean/50 dark:text-driftwood/50 mt-1">{s.energyLowDesc}</p>
+        </div>
+        <div class="bg-salt-white dark:bg-abyss rounded-2xl p-5 text-center shadow-sm ring-2 ring-dusk-amber/30">
+          <div class="text-3xl mb-2">☀️</div>
+          <div class="font-semibold text-dusk-amber">{s.energyMid}</div>
+          <p class="text-xs text-deep-ocean/50 dark:text-driftwood/50 mt-1">{s.energyMidDesc}</p>
+        </div>
+        <div class="bg-salt-white dark:bg-abyss rounded-2xl p-5 text-center shadow-sm">
+          <div class="text-3xl mb-2">⚡</div>
+          <div class="font-semibold text-compass-gold">{s.energyHigh}</div>
+          <p class="text-xs text-deep-ocean/50 dark:text-driftwood/50 mt-1">{s.energyHighDesc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Momentum -->
+  <section class="py-16 px-4 sm:px-6" data-reveal>
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-shrink-0">
+        <div class="relative w-48 h-48">
+          <svg viewBox="0 0 200 200" class="w-full h-full">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="12" class="text-driftwood dark:text-dark-surface" />
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#7FBBB3" stroke-width="12" stroke-linecap="round"
+              stroke-dasharray="502.65" stroke-dashoffset="140.74"
+              transform="rotate(-90 100 100)" class="animate-arc-draw" style="stroke-dasharray: 502.65;" />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span class="text-4xl font-bold font-mono">72</span>
+            <span class="text-xs text-deep-ocean/50 dark:text-driftwood/50">momentum</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-2xl sm:text-3xl font-bold">{s.momentumTitle}</h2>
+        <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 leading-relaxed">
+          {s.momentumDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Focus Mode -->
+  <section class="py-16 px-4 sm:px-6 bg-deep-ocean text-driftwood" data-reveal>
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-2xl sm:text-3xl font-bold text-salt-white">{s.focusTitle}</h2>
+        <p class="mt-3 text-base text-driftwood/70 leading-relaxed">{s.focusDescription}</p>
+      </div>
+      <div class="flex-shrink-0">
+        <PhoneMockup imageSrc="/images/screenshots/gentledo/05_focus_mode.png" alt="Focus Mode" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Fresh Start -->
+  <section class="py-16 px-4 sm:px-6" data-reveal>
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="text-4xl mb-4">🌱</div>
+      <h2 class="text-2xl sm:text-3xl font-bold">{s.freshStartTitle}</h2>
+      <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 max-w-lg mx-auto leading-relaxed">
+        {s.freshStartDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="py-16 px-4 sm:px-6 bg-driftwood/30 dark:bg-dark-surface/30" data-reveal>
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-center text-2xl sm:text-3xl font-bold mb-10">{s.featuresTitle}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <FeatureCard icon="📋" title={s.featureTimeline} description={s.featureTimelineDesc} />
+        <FeatureCard icon="📅" title={s.featureWeek} description={s.featureWeekDesc} />
+        <FeatureCard icon="📎" title={s.featureSubtask} description={s.featureSubtaskDesc} />
+        <FeatureCard icon="🔄" title={s.featureRecurring} description={s.featureRecurringDesc} />
+        <FeatureCard icon="✋" title={s.featureDragDrop} description={s.featureDragDropDesc} />
+        <FeatureCard icon="🌙" title={s.featureDarkMode} description={s.featureDarkModeDesc} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Local First -->
+  <section class="py-16 px-4 sm:px-6" data-reveal>
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="text-4xl mb-4">🔒</div>
+      <h2 class="text-2xl sm:text-3xl font-bold">{s.localTitle}</h2>
+      <p class="mt-3 text-base text-deep-ocean/60 dark:text-driftwood/60 leading-relaxed">
+        {s.localDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- Beta CTA -->
+  <section class="py-20 px-4 sm:px-6 bg-deep-ocean text-center" data-reveal>
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-salt-white">{s.ctaTitle}</h2>
+      <p class="mt-3 text-base text-driftwood/70">{s.ctaDescription}</p>
+      <a
+        href="mailto:babipanote@gmail.com?subject=GentleDo%20TestFlight%20%EC%B0%B8%EC%97%AC%20%EC%8B%A0%EC%B2%AD"
+        class="inline-block mt-8 px-8 py-3.5 bg-compass-gold text-deep-ocean font-semibold rounded-xl hover:scale-[1.02] transition-transform duration-200 shadow-lg text-lg"
+      >
+        {s.joinBeta}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

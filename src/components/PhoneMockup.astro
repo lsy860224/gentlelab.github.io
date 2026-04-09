@@ -1,0 +1,28 @@
+---
+interface Props {
+  imageSrc?: string;
+  alt?: string;
+  class?: string;
+}
+
+const { imageSrc, alt = 'App screenshot', class: className = '' } = Astro.props;
+---
+
+<div class:list={["animate-float", className]}>
+  <div class="relative mx-auto w-[220px] sm:w-[260px]">
+    <!-- Phone frame -->
+    <div class="relative rounded-[2.5rem] border-[6px] border-deep-ocean dark:border-driftwood/20 bg-deep-ocean overflow-hidden shadow-2xl" style="aspect-ratio: 9/19.5;">
+      <!-- Notch -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 bg-deep-ocean dark:bg-deep-ocean rounded-b-2xl z-10"></div>
+
+      <!-- Screen content -->
+      {imageSrc ? (
+        <img src={imageSrc} alt={alt} class="w-full h-full object-cover" loading="lazy" />
+      ) : (
+        <div class="w-full h-full bg-gradient-to-b from-deep-ocean to-dark-surface flex items-center justify-center">
+          <span class="text-driftwood/30 text-sm">Preview</span>
+        </div>
+      )}
+    </div>
+  </div>
+</div>

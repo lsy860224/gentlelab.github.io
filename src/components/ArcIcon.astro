@@ -1,0 +1,54 @@
+---
+interface Props {
+  size?: number;
+  animate?: boolean;
+  class?: string;
+}
+
+const {
+  size = 120,
+  animate = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<svg
+  viewBox="0 0 128 128"
+  width={size}
+  height={size}
+  class:list={[className]}
+  aria-hidden="true"
+>
+  <!-- Spiral Ring CI: Gold + Teal intertwined arcs -->
+
+  <!-- Gold main arc (right-bottom sweep) -->
+  <circle cx="64" cy="64" r="42" fill="none" stroke="#C8956C" stroke-width="9" stroke-linecap="round"
+    stroke-dasharray="263.9" stroke-dashoffset="88"
+    transform="rotate(-45 64 64)" opacity="0.85"
+    class:list={[{ 'animate-arc-draw': animate }]}
+  />
+
+  <!-- Gold inner arc -->
+  <circle cx="64" cy="64" r="30" fill="none" stroke="#E8A54B" stroke-width="7" stroke-linecap="round"
+    stroke-dasharray="188.5" stroke-dashoffset="110"
+    transform="rotate(140 64 64)" opacity="0.65"
+  />
+
+  <!-- Teal main arc (left-top sweep) -->
+  <circle cx="64" cy="64" r="38" fill="none" stroke="#5CBBAA" stroke-width="7" stroke-linecap="round"
+    stroke-dasharray="238.8" stroke-dashoffset="100"
+    transform="rotate(150 64 64)" opacity="0.7"
+  />
+
+  <!-- Teal secondary -->
+  <circle cx="64" cy="64" r="33" fill="none" stroke="#7FBBB3" stroke-width="5" stroke-linecap="round"
+    stroke-dasharray="207.3" stroke-dashoffset="140"
+    transform="rotate(-30 64 64)" opacity="0.5"
+  />
+
+  <!-- Outer teal accent -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#90D4A8" stroke-width="3" stroke-linecap="round"
+    stroke-dasharray="289.0" stroke-dashoffset="230"
+    transform="rotate(-50 64 64)" opacity="0.3"
+  />
+</svg>
