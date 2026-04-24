@@ -47,7 +47,7 @@
   animation: fade-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-/* ── Arc draw animation ── */
+/* ── Arc draw animation (GentleDo Progress Arc) ── */
 @keyframes arc-draw {
   from {
     stroke-dashoffset: 600;
@@ -59,6 +59,25 @@
 
 .animate-arc-draw {
   animation: arc-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Ring draw animation (Spiral Ring V2 — Confirmed CI 2026-04-24) ── */
+@keyframes ring-draw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-ring-draw {
+  animation: ring-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0s);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
 }
 
 /* ── Phone float animation ── */
@@ -75,6 +94,7 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-arc-draw,
+  .animate-ring-draw,
   .animate-float {
     animation: none !important;
   }

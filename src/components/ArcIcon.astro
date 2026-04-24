@@ -10,45 +10,37 @@ const {
   animate = false,
   class: className = '',
 } = Astro.props;
+
+// Spiral Ring V2 (Confirmed CI 2026-04-24)
+// 5 concentric rings, each draws in sequence when animate=true (pathLength=1 normalizes geometry).
+const rings = [
+  { r: 100.8, stroke: '#C8956C', width: 21,   opacity: 0.85, delay: '0s'   },
+  { r: 70,    stroke: '#E8A54B', width: 16.8, opacity: 0.65, delay: '0.1s' },
+  { r: 95.2,  stroke: '#5CBBAA', width: 16.8, opacity: 0.7,  delay: '0.2s' },
+  { r: 77,    stroke: '#7FBBB3', width: 11.2, opacity: 0.5,  delay: '0.3s' },
+  { r: 109.2, stroke: '#90D4A8', width: 7,    opacity: 0.3,  delay: '0.4s' },
+];
 ---
 
 <svg
-  viewBox="0 0 128 128"
+  viewBox="0 0 280 280"
   width={size}
   height={size}
   class:list={[className]}
   aria-hidden="true"
 >
-  <!-- Spiral Ring CI: Gold + Teal intertwined arcs -->
-
-  <!-- Gold main arc (right-bottom sweep) -->
-  <circle cx="64" cy="64" r="42" fill="none" stroke="#C8956C" stroke-width="9" stroke-linecap="round"
-    stroke-dasharray="263.9" stroke-dashoffset="88"
-    transform="rotate(-45 64 64)" opacity="0.85"
-    class:list={[{ 'animate-arc-draw': animate }]}
-  />
-
-  <!-- Gold inner arc -->
-  <circle cx="64" cy="64" r="30" fill="none" stroke="#E8A54B" stroke-width="7" stroke-linecap="round"
-    stroke-dasharray="188.5" stroke-dashoffset="110"
-    transform="rotate(140 64 64)" opacity="0.65"
-  />
-
-  <!-- Teal main arc (left-top sweep) -->
-  <circle cx="64" cy="64" r="38" fill="none" stroke="#5CBBAA" stroke-width="7" stroke-linecap="round"
-    stroke-dasharray="238.8" stroke-dashoffset="100"
-    transform="rotate(150 64 64)" opacity="0.7"
-  />
-
-  <!-- Teal secondary -->
-  <circle cx="64" cy="64" r="33" fill="none" stroke="#7FBBB3" stroke-width="5" stroke-linecap="round"
-    stroke-dasharray="207.3" stroke-dashoffset="140"
-    transform="rotate(-30 64 64)" opacity="0.5"
-  />
-
-  <!-- Outer teal accent -->
-  <circle cx="64" cy="64" r="46" fill="none" stroke="#90D4A8" stroke-width="3" stroke-linecap="round"
-    stroke-dasharray="289.0" stroke-dashoffset="230"
-    transform="rotate(-50 64 64)" opacity="0.3"
-  />
+  {rings.map((ring) => (
+    <circle
+      cx="140"
+      cy="140"
+      r={ring.r}
+      fill="none"
+      stroke={ring.stroke}
+      stroke-width={ring.width}
+      stroke-opacity={ring.opacity}
+      pathLength="1"
+      class:list={[{ 'animate-ring-draw': animate }]}
+      style={animate ? `--delay:${ring.delay}` : undefined}
+    />
+  ))}
 </svg>
