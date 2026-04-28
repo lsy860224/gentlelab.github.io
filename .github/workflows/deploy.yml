@@ -1,14 +1,18 @@
-name: Build (deployment moved to lsy860224.github.io repo)
+name: Build & Cross-repo deploy → lsy860224.github.io
 
-# 2026-04-28 — 이 repo는 더 이상 자체 GitHub Pages를 서빙하지 않음.
-# canonical은 https://lsy860224.github.io/ (lsy860224/lsy860224.github.io repo).
-# 이 워크플로우는 빌드만 검증하여 main 브랜치 정합성 보장.
+# 2026-04-28 — Cross-repo 자동 배포 활성화.
 #
-# 자동 cross-repo 배포 셋업 (TODO):
-# 1) Personal Access Token (repo write) 발급
-# 2) 이 repo의 Settings → Secrets → DEPLOY_TOKEN 등록
-# 3) 아래 deploy job uncomment + git push 단계 추가
-# 4) lsy860224/lsy860224.github.io repo의 main을 dist로 덮어쓰기
+# 동작:
+# 1) main에 push되면 빌드 (Astro build)
+# 2) lsy860224/lsy860224.github.io repo의 main을 dist 내용으로 덮어쓰기
+# 3) GitHub Pages가 root에서 자동 재서빙
+#
+# 필수 사전 셋업 (1회):
+# - github.com/settings/tokens → "Generate new token (classic)" → repo write 권한
+# - 이 repo Settings → Secrets → Actions → New repository secret:
+#   · Name:  DEPLOY_TOKEN
+#   · Value: 위 PAT
+# - 토큰 만료 시 갱신 필요 (보통 1년 권장)
 
 on:
   push:
@@ -19,10 +23,10 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -34,21 +38,35 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build (verify integrity only)
+      - name: Build
         run: npm run build
 
-      # TODO: Cross-repo push (DEPLOY_TOKEN secret 등록 후 활성화)
-      # - name: Deploy to lsy860224.github.io repo
-      #   env:
-      #     DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-      #   run: |
-      #     git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/lsy860224/lsy860224.github.io.git target
-      #     cd target
-      #     # README는 보존, 나머지는 dist 내용으로 교체
-      #     find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'README.md' -exec rm -rf {} +
-      #     cp -R ../dist/. .
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "github-actions[bot]@users.noreply.github.com"
-      #     git add -A
-      #     git diff-index --quiet HEAD || git commit -m "deploy: gentlelab-web $(date -u +%Y-%m-%dT%H:%MZ)"
-      #     git push origin main
+      - name: Deploy to lsy860224.github.io repo
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          set -e
+          if [ -z "$DEPLOY_TOKEN" ]; then
+            echo "❌ DEPLOY_TOKEN secret 미설정 — Settings → Secrets에 등록 필요"
+            echo "Build 검증은 통과했지만 배포 단계는 스킵됩니다."
+            exit 0
+          fi
+          git clone --depth=1 https://x-access-token:${DEPLOY_TOKEN}@github.com/lsy860224/lsy860224.github.io.git target
+          cd target
+
+          # README는 보존, 나머지는 dist 내용으로 교체
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'README.md' -exec rm -rf {} +
+          cp -R ../dist/. .
+
+          # .nojekyll은 dist에 포함됨 (public/.nojekyll → dist/.nojekyll)
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff-index --quiet HEAD --; then
+            echo "변경사항 없음 — 배포 스킵"
+          else
+            git commit -m "deploy: gentlelab-web $(date -u +%Y-%m-%dT%H:%MZ) — auto from gentlelab.github.io"
+            git push origin main
+            echo "✅ lsy860224.github.io repo 갱신 완료"
+          fi
