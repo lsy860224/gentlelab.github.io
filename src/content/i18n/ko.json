@@ -34,9 +34,9 @@
   "gentledo": {
     "heroTagline": "균형을 잡고, 계속 나아가세요.",
     "heroDescription": "오늘의 에너지에 맞춰 일하세요. 죄책감 없는 생산성 앱.",
-    "betaBadge": "Beta 테스터 모집 중",
-    "betaDescription": "정식 출시 전, 가장 먼저 경험해보세요. TestFlight를 통해 iOS 베타 테스트에 참여할 수 있습니다.",
-    "joinBeta": "TestFlight 참여하기",
+    "betaBadge": "App Store 출시 ✅",
+    "betaDescription": "iOS App Store에서 무료로 다운로드하세요. 광고 없음, 계정 가입 없음, 데이터는 기기에만 저장됩니다.",
+    "joinBeta": "App Store에서 받기",
     "energyTitle": "오늘의 컨디션부터 시작하세요",
     "energyDescription": "매일 아침 간단한 에너지 체크인으로 시작. 컨디션에 맞는 할 일을 보여줍니다.",
     "energyLow": "로우",
@@ -66,8 +66,8 @@
     "featureDarkModeDesc": "눈이 편안한 다크 테마 지원",
     "localTitle": "데이터는 당신의 기기에만",
     "localDescription": "계정 가입 없이 바로 시작. 모든 데이터는 기기에만 저장됩니다.",
-    "ctaTitle": "베타 테스터가 되어주세요",
-    "ctaDescription": "정식 출시 전, 가장 먼저 만나보세요. 무료. 광고 없음. 빨간색 없음."
+    "ctaTitle": "지금 GentleDo 다운로드",
+    "ctaDescription": "iOS 무료 다운로드. 광고 없음. 빨간색 없음. 데이터는 당신의 기기에만."
   },
   "gentlefast": {
     "heroTagline": "부드러운 간헐적 단식",
@@ -95,7 +95,7 @@
   },
   "common": {
     "comingSoon": "Coming Soon",
-    "live": "Beta",
+    "live": "출시",
     "learnMore": "자세히 보기",
     "notifyMe": "출시 알림 받기",
     "privacy": "Privacy",
