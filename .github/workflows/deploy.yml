@@ -1,4 +1,14 @@
-name: Deploy to GitHub Pages
+name: Build (deployment moved to lsy860224.github.io repo)
+
+# 2026-04-28 — 이 repo는 더 이상 자체 GitHub Pages를 서빙하지 않음.
+# canonical은 https://lsy860224.github.io/ (lsy860224/lsy860224.github.io repo).
+# 이 워크플로우는 빌드만 검증하여 main 브랜치 정합성 보장.
+#
+# 자동 cross-repo 배포 셋업 (TODO):
+# 1) Personal Access Token (repo write) 발급
+# 2) 이 repo의 Settings → Secrets → DEPLOY_TOKEN 등록
+# 3) 아래 deploy job uncomment + git push 단계 추가
+# 4) lsy860224/lsy860224.github.io repo의 main을 dist로 덮어쓰기
 
 on:
   push:
@@ -7,12 +17,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -30,21 +34,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build (verify integrity only)
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # TODO: Cross-repo push (DEPLOY_TOKEN secret 등록 후 활성화)
+      # - name: Deploy to lsy860224.github.io repo
+      #   env:
+      #     DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      #   run: |
+      #     git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/lsy860224/lsy860224.github.io.git target
+      #     cd target
+      #     # README는 보존, 나머지는 dist 내용으로 교체
+      #     find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'README.md' -exec rm -rf {} +
+      #     cp -R ../dist/. .
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      #     git add -A
+      #     git diff-index --quiet HEAD || git commit -m "deploy: gentlelab-web $(date -u +%Y-%m-%dT%H:%MZ)"
+      #     git push origin main
