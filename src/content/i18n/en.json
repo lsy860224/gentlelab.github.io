@@ -34,9 +34,11 @@
   "gentledo": {
     "heroTagline": "Stay balanced. Keep moving.",
     "heroDescription": "Work with your energy, not against it. Guilt-free productivity.",
-    "betaBadge": "Live on App Store ✅",
-    "betaDescription": "Free download on the iOS App Store. No ads, no account required, all data stays on your device.",
+    "betaBadge": "Live on iOS ✅ · Android Beta 🤖",
+    "betaDescription": "Free download on the iOS App Store. Android is currently in closed beta — join via Google Play. No ads, no account required, all data stays on your device.",
     "joinBeta": "Get on App Store",
+    "joinAndroidBeta": "Join Google Play Beta",
+    "webOptIn": "Opt-in via web",
     "energyTitle": "Start with how you feel",
     "energyDescription": "Begin each morning with a simple energy check-in. See the right tasks for your condition.",
     "energyLow": "Low",
@@ -67,7 +69,7 @@
     "localTitle": "Your data stays on your device",
     "localDescription": "No account needed — just start. All data stays on your device.",
     "ctaTitle": "Download GentleDo now",
-    "ctaDescription": "Free on iOS. No ads. No red. Your data stays on your device."
+    "ctaDescription": "Free on iOS · Android closed beta in progress. No ads. No red. Your data stays on your device."
   },
   "gentlefast": {
     "heroTagline": "Gentle intermittent fasting",
